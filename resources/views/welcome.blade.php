@@ -22,15 +22,14 @@
     </div>
 
     <div class="flex items-center justify-end mt-4">
+      <button class="btn btn-info fw-bold btn-block ms-3">{{ __('Log in') }}</button>
+    </div>
+    <div class="flex items-center justify-center mt-4">
       @if (Route::has('register'))
         <a class="underline text-sm text-primary-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
           {{ __("Dont' have an account?") }}
         </a>
       @endif
-
-      <x-primary-button class="ms-3">
-        {{ __('Log in') }}
-      </x-primary-button>
     </div>
   </form>
 </x-guest-layout>
