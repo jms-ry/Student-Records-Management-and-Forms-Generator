@@ -7,7 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Gate;
 class AuthenticatedSessionController extends Controller
 {
   /**
@@ -32,7 +32,13 @@ class AuthenticatedSessionController extends Controller
 
     $request->session()->regenerate();
 
-    return redirect()->intended(route('dashboard', absolute: false));
+    if(auth()->check() && Gate::allows('active-user')){
+      return redirect()->intended(route('dashboard', absolute: false));
+    }else{
+      return redirect()->route('pending-application');
+    }
+
+    
   }
 
   /**
